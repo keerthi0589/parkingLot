@@ -91,7 +91,7 @@ public class ParkingLotTest {
 	public void shouldNotifyWhenFull() throws ParkingLotFullException {
 		ParkingLot parkingLot = new ParkingLot(1);
 		AttendantMock attendant = new AttendantMock();
-		parkingLot.managedBy(attendant);
+		parkingLot.observedBy(attendant);
 		parkingLot.park(new Object());
 		assertEquals(1, attendant.getParkingLotFullNotifications());
 	}
@@ -100,7 +100,7 @@ public class ParkingLotTest {
 	public void shouldNotNotifyWhenNotFull() throws ParkingLotFullException {
 		ParkingLot parkingLot = new ParkingLot(2);
 		AttendantMock attendant = new AttendantMock();
-		parkingLot.managedBy(attendant);
+		parkingLot.observedBy(attendant);
 		parkingLot.park(new Object());
 		assertEquals(0,attendant.getParkingLotFullNotifications());
 	}
@@ -109,7 +109,7 @@ public class ParkingLotTest {
 	public void shouldNotifyWhenSpaceAvailable() throws ParkingLotFullException {
 		ParkingLot parkingLot = new ParkingLot(1);
 		AttendantMock attendant = new AttendantMock();
-		parkingLot.managedBy(attendant);
+		parkingLot.observedBy(attendant);
 		Object car = new Object();
 		parkingLot.park(car);
 		parkingLot.unpark(car.hashCode());
@@ -120,7 +120,7 @@ public class ParkingLotTest {
 	public void shouldNotNotifySpaceAvailableIfParkingLotWasNotFullBeforeUnpark() throws ParkingLotFullException {
 		ParkingLot parkingLot = new ParkingLot(2);
 		AttendantMock attendant = new AttendantMock();
-		parkingLot.managedBy(attendant);
+		parkingLot.observedBy(attendant);
 		Object car = new Object();
 		parkingLot.park(car);
 		parkingLot.unpark(car.hashCode());
@@ -129,7 +129,7 @@ public class ParkingLotTest {
 
 }
 
-class AttendantMock extends Attendant {
+class AttendantMock implements ParkingLotObserver {
 	private int parkingLotFullNotifications = 0;
 	private int spaceAvailableNotifications = 0;
 	

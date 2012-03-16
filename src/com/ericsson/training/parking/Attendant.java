@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Attendant {
+public class Attendant implements ParkingLotObserver {
 
 	List<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
 	List<ParkingLot> availableParkingLots = new ArrayList<ParkingLot>();
@@ -13,7 +13,7 @@ public class Attendant {
 	public void assignParkingLot(ParkingLot parkingLot) {
 		parkingLots.add(parkingLot);
 		availableParkingLots.add(parkingLot);
-		parkingLot.managedBy(this);
+		parkingLot.observedBy(this);
 		
 	}
 

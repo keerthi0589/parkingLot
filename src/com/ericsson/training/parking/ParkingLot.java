@@ -9,7 +9,7 @@ public class ParkingLot {
 	
 	private final int maxCapacity;
 	private HashMap<Integer,Object> hashmap;
-	private Attendant attendant;
+	private ParkingLotObserver attendant;
 	
 	public ParkingLot(int capacity) {
 		this.maxCapacity = capacity;
@@ -35,8 +35,8 @@ public class ParkingLot {
 	
 	}
 
-	public void managedBy(Attendant attendant) {
-		this.attendant=attendant;
+	public void observedBy(ParkingLotObserver observer) {
+		this.attendant=observer;
 	}
 
 }
